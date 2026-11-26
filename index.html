@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- =========================================================
+       DATOS DEL GRADUADO: lo que cambia de un graduado a otro
+       ---------------------------------------------------------
+       1. nombre y genero, aquí abajo. El género ajusta solo los
+          textos de toda la página (graduado/graduada,
+          conciliador/conciliadora, la estola, los mensajes…).
+       2. El mismo nombre en og:title, justo debajo.
+       3. Las fotos, con estos mismos nombres de archivo:
+            img/foto.jpg     retrato vertical 4:5 (720 × 900)
+            img/diploma.jpg  diploma
+       4. Vuelve a grabar el video de la presentación (lleva el nombre
+          y la foto):  node herramientas/grabar-video.mjs
+       5. Sube el número ?v= de los enlaces (ver al final de la página).
+       ========================================================= -->
+  <script>
+    const GRADUADO = {
+      nombre: "María Yency Mejía Torres",
+      genero: "femenino"   // "masculino" o "femenino"
+    };
+  </script>
+  <!-- Vista previa al compartir el enlace (WhatsApp, Facebook…). Esos servicios no
+       ejecutan JavaScript, por eso el nombre se escribe aquí otra vez. -->
+  <meta property="og:title" content="¡Felicitaciones, María Yency Mejía Torres!">
+  <!-- ========================================================= -->
+
+  <title>Felicitaciones · Corporación PESV</title>
+  <meta name="description" content="Ceremonia de grado del Diplomado en Conciliación Extrajudicial en Derecho · Centro de Conciliación y Arbitraje Corporación PESV.">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Ceremonia de grado · Diplomado en Conciliación Extrajudicial en Derecho · Corporación PESV">
+  <meta property="og:image" content="https://mariocodem.github.io/felicitaciones-maria-mejia/img/foto.jpg">
+  <meta property="og:image:width" content="720">
+  <meta property="og:image:height" content="900">
+  <meta property="og:url" content="https://mariocodem.github.io/felicitaciones-maria-mejia/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" as="image" href="img/foto.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilos.css?v=3">
+</head>
+<body class="locked">
+  <canvas id="confetti"></canvas>
+  <audio id="musica" src="music/cancion.mp3?v=3" preload="auto"></audio>
+
+  <!-- Sello reutilizable (intro y diploma) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="sg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#f3dc9b"/><stop offset=".5" stop-color="#d4ae5a"/><stop offset="1" stop-color="#9c7a2e"/>
+      </linearGradient>
+      <path id="circ" d="M100,100 m-70,0 a70,70 0 1,1 140,0 a70,70 0 1,1 -140,0"/>
+    </defs>
+    <symbol id="seal" viewBox="0 0 200 200">
+      <polygon fill="url(#sg)" points="100,4 112,18 130,10 136,28 155,27 154,46 172,52 164,69 178,82 164,94 172,112 154,117 155,136 136,136 130,154 112,146 100,160 88,146 70,154 64,136 45,136 46,117 28,112 36,94 22,82 36,69 28,52 46,46 45,27 64,28 70,10 88,18" transform="translate(0,18)"/>
+      <circle cx="100" cy="100" r="62" fill="#0b1224"/>
+      <circle cx="100" cy="100" r="58" fill="none" stroke="#d4ae5a" stroke-width="1"/>
+      <text font-family="Cinzel, serif" font-size="13" letter-spacing="3" fill="#f3dc9b">
+        <textPath href="#circ" startOffset="0">• CORPORACIÓN PESV • CONCILIACIÓN Y ARBITRAJE</textPath>
+      </text>
+      <text x="100" y="108" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="24" fill="#d4ae5a">PESV</text>
+    </symbol>
+  </svg>
+
+  <!-- =========================================================
+       INTRO TIPO VIDEO CEREMONIAL
+       ========================================================= -->
+  <div class="film poster" id="film" aria-label="Presentación animada">
+    <div class="beam"></div>
+    <canvas id="dust"></canvas>
+    <div class="lights-rig"><div class="searchlight l"></div><div class="searchlight r"></div></div>
+
+    <div class="progress" id="progress"></div>
+
+    <!-- Escena 1 : apertura -->
+    <div class="scene" data-duration="7500">
+      <div class="shot">
+        <svg class="emblem anim d1" viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="ring" cx="60" cy="60" r="56" fill="none" stroke="#d4ae5a" stroke-width="1.5"/>
+          <circle cx="60" cy="60" r="47" fill="none" stroke="#d4ae5a" stroke-width=".8" stroke-dasharray="2 4" opacity=".7"/>
+          <g stroke="#f3dc9b" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="60" y1="30" x2="60" y2="88"/><line x1="34" y1="42" x2="86" y2="42"/>
+            <circle cx="60" cy="30" r="3" fill="#f3dc9b"/>
+            <line x1="34" y1="42" x2="26" y2="62"/><line x1="34" y1="42" x2="42" y2="62"/>
+            <path d="M24 62 Q34 72 44 62 Z" fill="rgba(243,220,155,.2)"/>
+            <line x1="86" y1="42" x2="78" y2="62"/><line x1="86" y1="42" x2="94" y2="62"/>
+            <path d="M76 62 Q86 72 96 62 Z" fill="rgba(243,220,155,.2)"/>
+            <line x1="46" y1="88" x2="74" y2="88"/>
+          </g>
+        </svg>
+        <p class="kicker anim d2">Centro de Conciliación y Arbitraje</p>
+        <h1 class="big gold-text anim d3">Corporación PESV</h1>
+        <div class="rule"></div>
+        <p class="kicker anim d4">presenta</p>
+      </div>
+    </div>
+
+    <!-- Escena 2 -->
+    <div class="scene" data-duration="5600">
+      <div class="shot">
+        <p class="serif-line anim">Detrás de cada acuerdo hay alguien que eligió</p>
+        <p class="big anim d1" style="margin-top:10px">escuchar, mediar</p>
+        <p class="big gold-text anim d2">y construir paz.</p>
+      </div>
+    </div>
+
+    <!-- Escena 3 -->
+    <div class="scene" data-duration="6400">
+      <div class="shot">
+        <div class="chapters">
+          <span class="anim"><b>I</b>Formación</span>
+          <span class="anim d1"><b>II</b>Técnica</span>
+          <span class="anim d2"><b>III</b>Práctica</span>
+          <span class="anim d3"><b>IV</b>Grado</span>
+        </div>
+        <p class="kicker anim d3">140 horas de formación</p>
+        <div class="rule"></div>
+        <p class="serif-line anim d4">Hoy culmina un camino de esfuerzo y vocación de servicio, <br>y comienza una nueva etapa al servicio de la justicia.</p>
+      </div>
+    </div>
+
+    <!-- Escena 4 : redoble -->
+    <div class="scene" data-duration="3900" data-lights>
+      <div class="shot">
+        <p class="serif-line anim">Con honor y distinción,</p>
+        <p class="big mid anim d1">se otorga el título de<br><span class="gold-text"><span data-g="Conciliador|Conciliadora"></span> Extrajudicial en Derecho</span> a…</p>
+      </div>
+    </div>
+
+    <!-- Escena 5 : revelación del nombre -->
+    <div class="scene" data-duration="8800" data-flash data-lights data-fireworks data-confetti data-caps>
+      <div class="rays"></div>
+      <div class="shot reveal-grid">
+        <figure class="portrait">
+          <div class="ph"><img src="img/foto.jpg" alt=""></div>
+        </figure>
+        <div class="reveal-copy">
+          <p class="track gold-text">¡Felicitaciones!</p>
+          <div class="name-reveal gold-text write" data-name></div>
+          <div class="rule"></div>
+          <p class="serif-line anim d4"><span data-g="Graduado|Graduada"></span> del Diplomado en</p>
+          <p class="big mid anim d5">Conciliación Extrajudicial en Derecho</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Escena 6 : investidura -->
+    <div class="scene" data-duration="8600">
+      <div class="shot invest">
+        <canvas class="stole-canvas"></canvas>
+        <div class="copy">
+          <p class="kicker anim d3">Acto de investidura</p>
+          <div class="rule"></div>
+          <p class="big gold-text anim d4" style="margin:6px 0;font-size:clamp(1.4rem, min(5vw, 7vh), 3.4rem)">El honor se viste con orgullo</p>
+          <p class="serif-line anim d5">Hoy no termina un camino: comienza la misión de construir paz.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Escena 7 : sello -->
+    <div class="scene" data-duration="7000">
+      <div class="shot"><div class="shaker">
+        <div class="stamp-wrap">
+          <span class="shock"></span><span class="shock s2"></span>
+          <svg class="stamp" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal"/></svg>
+        </div>
+        <p class="kicker anim d4">Centro de Conciliación y Arbitraje</p>
+        <p class="big gold-text anim d4" style="margin:8px 0">Corporación PESV</p>
+        <p class="serif-line anim d5">Bogotá · <span data-year></span></p>
+      </div></div>
+    </div>
+
+    <div class="flash" id="flash"></div>
+    <div class="streak" id="streak"></div>
+    <div class="vignette"></div>
+    <div class="grain"></div>
+
+    <!-- Telón -->
+    <div class="curtain l"></div>
+    <div class="curtain r"></div>
+    <div class="valance"></div>
+
+    <div class="cover">
+      <div>
+        <p class="kicker">Centro de Conciliación y Arbitraje<span class="hide-sm"> · Corporación PESV</span></p>
+        <p class="big gold-text">Ceremonia de Grado</p>
+        <p class="serif-line">Diplomado en Conciliación Extrajudicial en Derecho</p>
+        <button class="play" id="btnPlay" type="button" aria-label="Iniciar ceremonia">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l15 8-15 8z"/></svg>
+        </button>
+        <small>🔊 Sube el volumen<span class="hide-sm"> · Toca para iniciar</span></small>
+        <button class="link-skip" id="btnSkipPoster" type="button">Entrar sin presentación</button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="ctrl" id="btnPause" type="button">
+        <svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
+        <span class="lbl">Pausar</span>
+      </button>
+      <button class="ctrl" id="btnMute" type="button" aria-label="Silenciar">
+        <svg viewBox="0 0 24 24" fill="currentColor"></svg>
+      </button>
+      <button class="ctrl" id="btnSkip" type="button">
+        <span class="lbl">Saltar intro</span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 5l9 7-9 7zM16 5h3v14h-3z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       PORTADA
+       ========================================================= -->
+  <header class="hero">
+    <div class="rays"></div>
+    <div class="frame"></div>
+    <div class="hero-inner split">
+      <figure class="portrait hero-photo reveal" id="heroPhoto">
+        <div class="ph"><img src="img/foto.jpg" alt=""></div>
+      </figure>
+      <div class="hero-text">
+      <p class="kicker reveal">Centro de Conciliación y Arbitraje · Corporación PESV</p>
+      <svg class="hero-cap reveal" viewBox="60 30 180 125" aria-hidden="true">
+        <path d="M110 76 L110 98 Q150 114 190 98 L190 76 Q150 92 110 76 Z" fill="#0b0f1d" stroke="#d4ae5a" stroke-width="1.2"/>
+        <polygon points="68,60 150,82 232,60 232,66 150,88 68,66" fill="#05070f"/>
+        <polygon points="150,38 232,60 150,82 68,60" fill="#1a2238" stroke="#d4ae5a" stroke-width="1.5"/>
+        <path d="M150 60 L206 72 L207 120" stroke="#f3dc9b" stroke-width="2.5" fill="none"/>
+        <circle cx="150" cy="60" r="4" fill="#f3dc9b"/>
+        <path d="M201 118 L213 118 L217 146 L197 146 Z" fill="#d4ae5a"/>
+      </svg>
+      <h2 class="big reveal" style="margin-top:6px">¡Felicitaciones!</h2>
+      <div class="name-reveal gold-text reveal" data-name></div>
+      <p class="lead reveal">
+        Por culminar con éxito el <strong>Diplomado en Conciliación Extrajudicial en Derecho</strong>.
+        Tu formación es un aporte valioso a la solución pacífica de los conflictos.
+      </p>
+      <div class="actions reveal">
+        <a class="btn" href="#diploma">Ver diploma</a>
+        <button class="btn ghost" id="btnReplay" type="button">▶ Ver presentación de nuevo</button>
+      </div>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"></div>
+  </header>
+
+  <!-- =========================================================
+       DIPLOMA
+       ========================================================= -->
+  <section id="diploma">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">Reconocimiento oficial</span>
+        <h2>El diploma</h2>
+        <p>Otorgado por el Centro de Conciliación y Arbitraje Corporación PESV.</p>
+      </div>
+
+      <div class="stage">
+        <div class="spot"></div>
+        <div class="diploma-frame" id="diplomaFrame">
+          <div class="inner">
+            <img id="diplomaImg" src="img/diploma.jpg" alt="">
+
+            <label class="placeholder" id="placeholder" for="diplomaFile">
+              <div>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                <strong>Espacio para el diploma</strong>
+                Guarda la imagen como <code>img/diploma.jpg</code>.<br>
+                <small>o haz clic aquí para previsualizar una imagen</small>
+              </div>
+            </label>
+            <input type="file" id="diplomaFile" accept="image/*" hidden>
+          </div>
+        </div>
+
+        <!-- Sello -->
+        <svg class="seal-badge" viewBox="0 0 200 200" aria-hidden="true"><use href="#seal"/></svg>
+      </div>
+
+      <p class="issued reveal">
+        Expedido por el <b class="gold-text">Centro de Conciliación y Arbitraje Corporación PESV</b>
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       RECUERDOS PARA DESCARGAR
+       (el video se graba con: node herramientas/grabar-video.mjs)
+       ========================================================= -->
+  <section id="recuerdos" style="padding-top:20px">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">Para guardar</span>
+        <h2>Un recuerdo de este día</h2>
+        <p>Descarga la presentación, el diploma y la foto para conservarlos o compartirlos.</p>
+      </div>
+      <div class="keepsakes reveal">
+        <a class="keepsake" href="video/presentacion.mp4?v=3" data-descarga="Presentación de grado">
+          <span class="thumb video"><img src="video/portada.jpg?v=3" alt="" loading="lazy"></span>
+          <span class="row">
+            <span class="info"><strong>Presentación en video</strong><small>MP4<span data-peso></span></small></span>
+            <span class="get"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Descargar</span>
+          </span>
+        </a>
+        <a class="keepsake" href="img/diploma.jpg" data-descarga="Diploma">
+          <span class="thumb"><img src="img/diploma.jpg" alt="" loading="lazy"></span>
+          <span class="row">
+            <span class="info"><strong>Diploma</strong><small>JPG<span data-peso></span></small></span>
+            <span class="get"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Descargar</span>
+          </span>
+        </a>
+        <a class="keepsake" href="img/foto.jpg" data-descarga="Foto de grado">
+          <span class="thumb foto"><img src="img/foto.jpg" alt="" loading="lazy"></span>
+          <span class="row">
+            <span class="info"><strong>Foto de grado</strong><small>JPG<span data-peso></span></small></span>
+            <span class="get"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>Descargar</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       RECORRIDO
+       ========================================================= -->
+  <section>
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">El camino recorrido</span>
+        <h2>De estudiante a <span data-g="conciliador|conciliadora"></span></h2>
+      </div>
+      <div class="timeline">
+        <div class="step reveal"><div class="dot">I</div><h4>Formación</h4><p>Fundamentos jurídicos de los mecanismos alternativos de solución de conflictos.</p></div>
+        <div class="step reveal"><div class="dot">II</div><h4>Técnica</h4><p>Herramientas de comunicación, negociación y manejo de audiencias.</p></div>
+        <div class="step reveal"><div class="dot">III</div><h4>Práctica</h4><p>Casos reales y simulaciones que forjaron criterio y experiencia.</p></div>
+        <div class="step reveal"><div class="dot">IV</div><h4>Grado</h4><p>Hoy, <span data-g="listo|lista"></span> para servir como <span data-g="conciliador|conciliadora"></span> extrajudicial en derecho.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       VALORES
+       ========================================================= -->
+  <section style="padding-top:20px">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">Principios</span>
+        <h2>Lo que ahora representas</h2>
+      </div>
+      <div class="values">
+        <article class="value reveal">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h4>Diálogo</h4><p>Escuchar a cada parte y facilitar una comunicación respetuosa y constructiva.</p>
+        </article>
+        <article class="value reveal">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg></div>
+          <h4>Imparcialidad</h4><p>Actuar con neutralidad, garantizando igualdad de condiciones para todos.</p>
+        </article>
+        <article class="value reveal">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <h4>Confidencialidad</h4><p>Proteger lo compartido y generar la confianza necesaria para llegar a acuerdos.</p>
+        </article>
+        <article class="value reveal">
+          <div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+          <h4>Cultura de paz</h4><p>Transformar los conflictos en oportunidades de entendimiento y convivencia.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       CITA
+       ========================================================= -->
+  <section class="quote">
+    <div class="wrap reveal">
+      <div class="mark">“</div>
+      <blockquote>Desalienta los litigios. Persuade a tus vecinos a llegar a un acuerdo siempre que puedas. Como pacificador, el abogado tiene una oportunidad superior de ser una buena persona.</blockquote>
+      <cite>Abraham Lincoln</cite>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       MENSAJES
+       ========================================================= -->
+  <section id="mensajes">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">Muro de felicitaciones</span>
+        <h2>Deja tu mensaje</h2>
+      </div>
+      <form class="form reveal" id="msgForm">
+        <input id="msgName" type="text" placeholder="Tu nombre" maxlength="60" required>
+        <textarea id="msgText" placeholder="Escribe tu mensaje de felicitación…" maxlength="400" required></textarea>
+        <button class="btn" type="submit">Enviar felicitación</button>
+      </form>
+      <div class="messages" id="messages"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="org">Centro de Conciliación y Arbitraje · Corporación PESV</div>
+    Diplomado en Conciliación Extrajudicial en Derecho · <span data-year></span>
+  </footer>
+
+  <div class="lightbox" id="lightbox"><img alt=""></div>
+
+  <!-- Código, en orden de carga (comparten variables globales: no cambies el orden).
+       ?v=3: al publicar cambios en css/, js/, music/ o video/, sube el número en todos los
+       enlaces (también estilos.css y la canción) para que nadie mezcle archivos viejos y nuevos. -->
+  <script src="js/textos.js?v=3"></script>   <!-- aplica GRADUADO: nombre, género, textos alternativos -->
+  <script src="js/musica.js?v=3"></script>   <!-- música de la intro: music/cancion.mp3 (Sound) -->
+  <script src="js/efectos.js?v=3"></script>  <!-- confeti, fuegos artificiales y birretes -->
+  <script src="js/intro.js?v=3"></script>    <!-- la película de introducción y sus controles -->
+  <script src="js/estola.js?v=3"></script>   <!-- estola con física de tela (Stole) -->
+  <script src="js/pagina.js?v=3"></script>   <!-- diploma, ampliación, animaciones al hacer scroll y mensajes -->
+</body>
+</html>
